@@ -16,6 +16,13 @@ def gen_iv(blocksize=BLOCKSIZE):
     return Random.new().read(blocksize)
 
 
+def key2bytes(key):
+    keybytes = b16decode(key, True)
+    if len(keybytes) not in KEYSIZES:
+        raise ValueError('Invalid key length: %s' % len(keybytes))
+    return keybytes
+
+
 def aes_cbc_encrypt(key, plaintext, iv=None, pad=True):
     """
 
@@ -25,9 +32,7 @@ def aes_cbc_encrypt(key, plaintext, iv=None, pad=True):
     `blocksize` if `pad` is False).
 
     """
-    keybytes = b16decode(key, True)
-    if len(keybytes) not in KEYSIZES:
-        raise ValueError('Invalid key length: %s' % len(keybytes))
+    keybytes = key2bytes(key)
 
     if iv is not None:
         iv = b16decode(iv, True)
@@ -62,10 +67,7 @@ def aes_cbc_decrypt(key, ciphertext, raw=False):
     Decrypt the AES-CBC-encrypted `ciphertext` using the given `key`,
     stripping off the IV and the pkcs5 padding bytes if `raw` is false.
     """
-    keybytes = b16decode(key, True)
-    if len(keybytes) not in KEYSIZES:
-        raise ValueError('Invalid key length: %s' % len(keybytes))
-
+    keybytes = key2bytes(key)
     ctbytes = b16decode(ciphertext, True)
 
     if len(ctbytes) % BLOCKSIZE != 0:
