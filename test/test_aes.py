@@ -278,3 +278,67 @@ def test_aes_cbc_192decrypt_noraw_nist2():
 
 def test_aes_cbc_192decrypt_noraw_nist3():
     _do_aes_cbc_decrypt_noraw_nist_test(AES_CBC_192_NIST_VECTORS, 3)
+
+
+def test_aes_cbc_256_encrypt_nopad_nist0():
+    _do_aes_cbc_encrypt_nopad_nist_test(AES_CBC_256_NIST_VECTORS, 0)
+
+
+def test_aes_cbc_256_encrypt_nopad_nist1():
+    _do_aes_cbc_encrypt_nopad_nist_test(AES_CBC_256_NIST_VECTORS, 1)
+
+
+def test_aes_cbc_256_encrypt_nopad_nist2():
+    _do_aes_cbc_encrypt_nopad_nist_test(AES_CBC_256_NIST_VECTORS, 2)
+
+
+def test_aes_cbc_256_encrypt_nopad_nist3():
+    _do_aes_cbc_encrypt_nopad_nist_test(AES_CBC_256_NIST_VECTORS, 3)
+
+
+def test_aes_cbc_256_encrypt_pad_nist0():
+    _do_aes_cbc_encrypt_pad_nist_test(AES_CBC_256_NIST_VECTORS, 0)
+
+
+def test_aes_cbc_256_encrypt_pad_nist1():
+    _do_aes_cbc_encrypt_pad_nist_test(AES_CBC_256_NIST_VECTORS, 1)
+
+
+def test_aes_cbc_256_encrypt_pad_nist2():
+    _do_aes_cbc_encrypt_pad_nist_test(AES_CBC_256_NIST_VECTORS, 2)
+
+
+def test_aes_cbc_256_encrypt_pad_nist3():
+    _do_aes_cbc_encrypt_pad_nist_test(AES_CBC_256_NIST_VECTORS, 3)
+
+
+def test_aes_cbc_256decrypt_raw_nist0():
+    _do_aes_cbc_decrypt_raw_nist_test(AES_CBC_256_NIST_VECTORS, 0)
+
+
+def test_aes_cbc_256decrypt_raw_nist1():
+    _do_aes_cbc_decrypt_raw_nist_test(AES_CBC_256_NIST_VECTORS, 1)
+
+
+def test_aes_cbc_256decrypt_raw_nist2():
+    _do_aes_cbc_decrypt_raw_nist_test(AES_CBC_256_NIST_VECTORS, 2)
+
+
+def test_aes_cbc_256decrypt_raw_nist3():
+    _do_aes_cbc_decrypt_raw_nist_test(AES_CBC_256_NIST_VECTORS, 3)
+
+
+def test_aes_cbc_256decrypt_noraw_nist0():
+    _do_aes_cbc_decrypt_noraw_nist_test(AES_CBC_256_NIST_VECTORS, 0)
+
+
+def test_aes_cbc_256decrypt_noraw_nist1():
+    _do_aes_cbc_decrypt_noraw_nist_test(AES_CBC_256_NIST_VECTORS, 1)
+
+
+def test_aes_cbc_256decrypt_noraw_nist2():
+    _do_aes_cbc_decrypt_noraw_nist_test(AES_CBC_256_NIST_VECTORS, 2)
+
+
+def test_aes_cbc_256decrypt_noraw_nist3():
+    _do_aes_cbc_decrypt_noraw_nist_test(AES_CBC_256_NIST_VECTORS, 3)
