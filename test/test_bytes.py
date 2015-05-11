@@ -15,6 +15,11 @@ def test_byte_to_bin_ints():
         B.byte_to_bin(2.0)
 
 
+def test_bytes_to_int():
+    assert B.bytes_to_int([chr(20), chr(3), chr(1)]) == (20 * 256 ** 2 +
+                                                         3 * 256 ** 1 + 1)
+
+
 def test_ascii_to_hex_onechar():
     assert B.ascii_to_hex(' ') == '20'
 

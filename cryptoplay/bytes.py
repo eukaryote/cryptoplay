@@ -1,5 +1,7 @@
 from __future__ import absolute_import, division, print_function
 
+from cryptoplay.compat import integral_types
+
 
 def byte_to_bin(b):
     if isinstance(b, str):
@@ -22,7 +24,7 @@ def ascii_to_bin(text):
 
 
 def int_to_byte_ints(n):
-    if not isinstance(n, int) or n < 0:
+    if not isinstance(n, integral_types) or n < 0:
         raise ValueError(n)
     bs = []
     while n > 0:
@@ -30,6 +32,19 @@ def int_to_byte_ints(n):
         bs.append(rem)
     bs.reverse()
     return bs
+
+
+def bytes_to_int(bs):
+    try:
+        bs = map(ord, bs)
+    except TypeError:
+        assert isinstance(bs[0], integral_types)
+
+    bs.reverse()
+    num = 0
+    for i, b in enumerate(bs):
+        num += (256 ** i) * b
+    return num
 
 
 def to_byte_ints(x):
@@ -68,16 +83,23 @@ def to_byte_ints(x):
     raise ValueError("unexpected input: %r" % (x,))
 
 
-def xor_(x, y):
+def xor_(x, y, truncate=False):
     """
     Compute the bitwise XOR of `x` and `y`, which may be both an int (in
     range 0 <= i < 256), both a byte, or both a list of those.
+
+    If `truncate` is true, then when `x` and `y` are sequences of different
+    length, only as many elements as the smallest of `x` or `y` are returned;
+    when `truncate` is false, then the remaining elements of the longer
+    iterable would be appended unchanged, as if they were XORed with 0-bytes.
     """
     if type(x) != type(y):
         raise ValueError()
     if isinstance(x, (list, tuple)):
         xlen, ylen = len(x), len(y)
         res = [xor_(xx, yy) for xx, yy in zip(x, y)]
+        if truncate:
+            return res
         if xlen < ylen:
             res += y[ylen - xlen:]
         elif ylen < xlen:
