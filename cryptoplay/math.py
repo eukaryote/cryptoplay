@@ -5,7 +5,21 @@ from math import sqrt
 
 from fractions import gcd
 
-__all__ = ['gcd', 'egcd', 'modinv', 'sqrt']
+__all__ = ['modexp', 'gcd', 'egcd', 'modinv', 'divides', 'factors', 'isprime',
+           'sqrt', 'dlog']
+
+
+def modexp(base, exp, n):
+    """
+    Compute base**exp (mod n)
+    """
+    s = 1
+    while exp != 0:
+        if exp & 1:
+            s = (s * base) % n
+        exp >>= 1
+        base = (base * base) % n
+    return s
 
 
 def egcd(a, b):
